@@ -1,6 +1,9 @@
-from unittest import skip
+#from unittest import skip
 
+from django.utils.html import escape
 from selenium.webdriver.common.keys import Keys
+
+from lists.forms import DUPLICATE_ITEM_ERROR
 
 from .base import FunctionalTest
 
@@ -64,5 +67,5 @@ class ItemValidationTest(FunctionalTest):
         # She sees a helpful error message
         self.wait_for(lambda: self.assertEqual(
             self.browser.find_element_by_css_selector('.has-error').text,
-            "You've already got this in your list"
+            DUPLICATE_ITEM_ERROR
         ))
